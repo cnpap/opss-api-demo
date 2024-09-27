@@ -29,6 +29,13 @@ paths:
                 breed:
                   type: string
     get:
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "Bearer your_actual_token_here"
       responses:
         '200':
           description: 请求成功
@@ -38,7 +45,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Cat'
-      parameters: []
       tags:
         - 梦想家/小伙伴/猫咪管理
       summary: 获取所有猫咪
@@ -99,7 +105,126 @@ paths:
             type: string
       tags:
         - 梦想家/小伙伴/猫咪管理
-      summary: 删除一只猫咪
+      summary: 领养一只猫咪
+  /dog/:
+    post:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  age:
+                    type: number
+                  breed:
+                    type: string
+                  id:
+                    type: number
+                required:
+                  - name
+                  - age
+                  - breed
+                  - id
+      parameters: []
+      tags:
+        - 梦想家/小伙伴/旺财管理
+      summary: 添加一只旺财
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                age:
+                  type: number
+                breed:
+                  type: string
+    get:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    age:
+                      type: number
+                    breed:
+                      type: string
+                    id:
+                      type: number
+                  required:
+                    - name
+                    - age
+                    - breed
+                    - id
+      parameters: []
+      tags:
+        - 梦想家/小伙伴/旺财管理
+      summary: 获取所有旺财
+  /dog/:id:
+    get:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  age:
+                    type: number
+                  breed:
+                    type: string
+                  id:
+                    type: number
+                required:
+                  - name
+                  - age
+                  - breed
+                  - id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+      tags:
+        - 梦想家/小伙伴/旺财管理
+      summary: 获取一只旺财
+    delete:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+      tags:
+        - 梦想家/小伙伴/旺财管理
+      summary: 领养一只旺财
 components:
   schemas:
     Cat:
@@ -111,25 +236,19 @@ components:
           type: string
         age:
           type: number
-        breed:
-          type: string
       required:
         - id
         - name
         - age
-        - breed
         - id
         - name
         - age
-        - breed
         - id
         - name
         - age
-        - breed
         - id
         - name
         - age
-        - breed
     UpdateCateDtoInterface:
       type: object
       properties:

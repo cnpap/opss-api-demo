@@ -7,7 +7,7 @@ import {
   Delete,
   Put,
 } from '@nestjs/common';
-import { CatsService } from './cats.service';
+import { CatService } from './cat.service';
 import { CreateCateDtoType } from './dto/create-cat.dto';
 import { UpdateCateDtoInterface } from './dto/update-cat.dto';
 
@@ -17,8 +17,8 @@ import { UpdateCateDtoInterface } from './dto/update-cat.dto';
  * @summary 猫咪管理
  */
 @Controller('cats')
-export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+export class CatController {
+  constructor(private readonly catsService: CatService) {}
 
   /**
    * @summary 添加一只猫咪
@@ -58,7 +58,7 @@ export class CatsController {
   }
 
   /**
-   * @summary 删除一只猫咪
+   * @summary 领养一只猫咪
    */
   @Delete(':id')
   remove(@Param('id') id: string) {

@@ -1,19 +1,20 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CatsService } from './cats.service';
+import { CatService } from './cat.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
-import { registerImport } from '../register';
+import { registerImport } from '../../register';
+import { CatModule } from './cat.module';
 
 describe('CatsService', () => {
-  let service: CatsService;
+  let service: CatService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [...registerImport()],
-      providers: [CatsService],
+      imports: [...registerImport(), CatModule],
+      providers: [CatService],
     }).compile();
 
-    service = module.get<CatsService>(CatsService);
+    service = module.get<CatService>(CatService);
   });
 
   afterEach(async () => {

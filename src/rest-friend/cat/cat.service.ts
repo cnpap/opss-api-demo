@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Cat } from './entities/cat.entity';
 
 @Injectable()
-export class CatsService {
+export class CatService {
   private readonly redis: Redis;
 
   constructor(private readonly redisService: RedisService) {
