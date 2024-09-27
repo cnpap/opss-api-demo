@@ -11,7 +11,7 @@ export async function config(): Promise<SafeRpcConfiguration> {
     absolute: true,
   });
   return {
-    openapiPath: resolve(dirname),
+    openapiPath: resolve(dirname, 'openapi'),
     serviceGroups: [
       {
         serviceName: 'opss-api',

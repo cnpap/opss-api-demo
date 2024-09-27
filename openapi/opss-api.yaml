@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  title: opss-api
+  version: 1.0.0
+paths:
+  /cats/:
+    post:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+      parameters: []
+      tags:
+        - 梦想家/小伙伴/猫咪管理
+      summary: 添加一只猫咪
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                age:
+                  type: number
+                breed:
+                  type: string
+    get:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cat'
+      parameters: []
+      tags:
+        - 梦想家/小伙伴/猫咪管理
+      summary: 获取所有猫咪
+  /cats/:id:
+    get:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+      tags:
+        - 梦想家/小伙伴/猫咪管理
+      summary: 获取一只猫咪
+    put:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+      tags:
+        - 梦想家/小伙伴/猫咪管理
+      summary: 更新一只猫咪
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCateDtoInterface'
+    delete:
+      responses:
+        '200':
+          description: 请求成功
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: boolean
+                    const: false
+                  - type: boolean
+                    const: true
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+      tags:
+        - 梦想家/小伙伴/猫咪管理
+      summary: 删除一只猫咪
+components:
+  schemas:
+    Cat:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        age:
+          type: number
+        breed:
+          type: string
+      required:
+        - id
+        - name
+        - age
+        - breed
+        - id
+        - name
+        - age
+        - breed
+        - id
+        - name
+        - age
+        - breed
+        - id
+        - name
+        - age
+        - breed
+    UpdateCateDtoInterface:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: number
+        breed:
+          type: string
+      required:
+        - name
+        - age
+        - breed
