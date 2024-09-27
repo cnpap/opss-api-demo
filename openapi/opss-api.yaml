@@ -3,7 +3,7 @@ info:
   title: opss-api
   version: 1.0.0
 paths:
-  /cats/:
+  /cat:
     post:
       responses:
         '200':
@@ -13,6 +13,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Cat'
       parameters: []
+      x-controller-annotations:
+        - Post
       tags:
         - 梦想家/小伙伴/猫咪管理
       summary: 添加一只猫咪
@@ -29,13 +31,6 @@ paths:
                 breed:
                   type: string
     get:
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          schema:
-            type: string
-          example: "Bearer your_actual_token_here"
       responses:
         '200':
           description: 请求成功
@@ -45,10 +40,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Cat'
+      parameters: []
+      x-controller-annotations:
+        - Get
       tags:
         - 梦想家/小伙伴/猫咪管理
       summary: 获取所有猫咪
-  /cats/:id:
+  /cat:id:
     get:
       responses:
         '200':
@@ -62,6 +60,8 @@ paths:
           in: path
           schema:
             type: string
+      x-controller-annotations:
+        - Get
       tags:
         - 梦想家/小伙伴/猫咪管理
       summary: 获取一只猫咪
@@ -78,6 +78,8 @@ paths:
           in: path
           schema:
             type: string
+      x-controller-annotations:
+        - Put
       tags:
         - 梦想家/小伙伴/猫咪管理
       summary: 更新一只猫咪
@@ -103,10 +105,12 @@ paths:
           in: path
           schema:
             type: string
+      x-controller-annotations:
+        - Delete
       tags:
         - 梦想家/小伙伴/猫咪管理
       summary: 领养一只猫咪
-  /dog/:
+  /dog:
     post:
       responses:
         '200':
@@ -130,6 +134,8 @@ paths:
                   - breed
                   - id
       parameters: []
+      x-controller-annotations:
+        - Post
       tags:
         - 梦想家/小伙伴/旺财管理
       summary: 添加一只旺财
@@ -169,11 +175,21 @@ paths:
                     - age
                     - breed
                     - id
-      parameters: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      x-controller-annotations:
+        - Get
+        - UseGuards
       tags:
         - 梦想家/小伙伴/旺财管理
       summary: 获取所有旺财
-  /dog/:id:
+      security:
+        - BearerAuth: []
+  /dog:id:
     get:
       responses:
         '200':
@@ -201,6 +217,8 @@ paths:
           in: path
           schema:
             type: string
+      x-controller-annotations:
+        - Get
       tags:
         - 梦想家/小伙伴/旺财管理
       summary: 获取一只旺财
@@ -222,6 +240,8 @@ paths:
           in: path
           schema:
             type: string
+      x-controller-annotations:
+        - Delete
       tags:
         - 梦想家/小伙伴/旺财管理
       summary: 领养一只旺财

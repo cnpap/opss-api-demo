@@ -1,3 +1,5 @@
+import type { OpenAPI } from './opss-schema';
+
 /**
  * 被分析的文件，一般是路由文件，如果是 nestjs 则是控制器文件
  */
@@ -48,6 +50,10 @@ export interface ServiceGroup {
  * 完整的配置类型
  */
 export interface SafeRpcConfiguration {
+  /**
+   * 当解析完成后，使用的回调，可以让用户自定义生成的内容
+   */
+  onParseComplete?: (openAPI: OpenAPI) => void;
   /**
    * 分析入口，一个仓库中的多组服务，一般项目中只有一组服务
    */
