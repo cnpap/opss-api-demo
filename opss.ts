@@ -2,6 +2,9 @@ import { resolve } from 'node:path';
 import * as process from 'node:process';
 import glob from 'tiny-glob';
 import type { SafeRpcConfiguration } from './opss-type';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const dirname = process.cwd();
 

@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { DogService } from './dog.service';
 import { CreateDogDto } from './dto/create-dog.dto';
 import { UpdateDogDto } from './dto/update-dog.dto';
+import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 
 /**
  * @tags 梦想家/小伙伴
@@ -32,6 +34,7 @@ export class DogController {
    * @summary 获取所有旺财
    */
   @Get()
+  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.dogService.findAll();
   }

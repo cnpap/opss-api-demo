@@ -16,9 +16,13 @@ async function bootstrap() {
   const port = configService.get<number>('app.port', 3000);
   const host = configService.get<string>('app.host', 'localhost');
   const schema = configService.get<string>('app.schema', 'http');
+  const mode = configService.get<string>('app.mode', 'p');
   await app.listen(3000, () => {
     const logger = new Logger('      😄       ');
     logger.log(`Server is running on ${schema}://${host}:${port}`);
+    if (mode === 'd') {
+      logger.debug(`JWT secret: ${configService.get<string>('jwt.secret')}`);
+    }
   });
 }
 

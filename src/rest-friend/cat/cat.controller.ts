@@ -16,7 +16,7 @@ import { UpdateCateDtoInterface } from './dto/update-cat.dto';
  *
  * @summary 猫咪管理
  */
-@Controller('cats')
+@Controller('cat')
 export class CatController {
   constructor(private readonly catsService: CatService) {}
 
